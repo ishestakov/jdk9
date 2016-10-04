@@ -11,6 +11,6 @@ public class Main {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-context.xml");
 		Application application = (Application) applicationContext.getBean("application");
 		String pass = application.generatePassword();
-		System.out.println(String.format("Generated password: %s", pass));
+		System.out.println("Generated password: " + pass);
 	}
 }
