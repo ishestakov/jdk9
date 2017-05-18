@@ -42,7 +42,6 @@ function resources {
 }
 
 if [ ! -z $JAVA_VERSION ]; then
-
 	clear;
 	prepare;
 	compile;
