@@ -5,7 +5,7 @@ popd > /dev/null
 
 JAVA_VERSION=9
 
-JAVA_ARGS="-p /example/bin --add-modules com.github.ishestakov.coe -cp 'lib/*:main/resources:mod/*' --list-modules"
+JAVA_ARGS="-p /example/target --add-modules com.github.ishestakov.coe -cp 'lib/*:target/resources:mod/*' --list-modules"
 
 
-docker run -it -v $SCRIPTPATH:/example -v $SCRIPTPATH/bin/java$JAVA_VERSION:/example/bin/ -v $HOME:$HOME --user `id -u $USER`:`id -g $USER` -e HOME=$HOME  java:$JAVA_VERSION java $JAVA_ARGS
+docker run -it --rm -v $SCRIPTPATH/target/java$JAVA_VERSION:/example/target/ -v $HOME:$HOME --user `id -u $USER`:`id -g $USER` -e HOME=$HOME  openjdk:$JAVA_VERSION java $JAVA_ARGS

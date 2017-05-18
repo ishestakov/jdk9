@@ -7,13 +7,15 @@ echo $1
 
 JAVA_VERSION=$1
 
-if [ ! -d $SCRIPTPATH/bin ]; then
-	mkdir $SCRIPTPATH/bin
+if [ ! -d $SCRIPTPATH/target ]; then
+	mkdir $SCRIPTPATH/target
 fi
-if [ ! -d $SCRIPTPATH/bin/java8 ]; then
-	mkdir $SCRIPTPATH/bin/java$JAVA_VERSION
+if [ ! -d $SCRIPTPATH/target/java$JAVA_VERSION ]; then
+	mkdir $SCRIPTPATH/target/java$JAVA_VERSION
 fi
 
+echo 'Compiling sources'
+docker run -it --rm -v $SCRIPTPATH:/example -v $HOME:$HOME --user `id -u $USER`:`id -g $USER` -e HOME=$HOME "openjdk:$JAVA_VERSION" /bin/bash /example/javac$JAVA_VERSION.sh
 
-
-docker run -it -v $SCRIPTPATH:/example -v $SCRIPTPATH/bin/java$JAVA_VERSION:/example/bin/ -v $HOME:$HOME --user `id -u $USER`:`id -g $USER` -e HOME=$HOME  java:$JAVA_VERSION /bin/bash /example/javac.sh
+echo 'Processing resources'
+cp -v -r $SCRIPTPATH/main/resources $SCRIPTPATH/target/java$JAVA_VERSION/resources
