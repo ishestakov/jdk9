@@ -33,7 +33,7 @@ function prepare {
 
 function compile {
 	echo -e "${GREEN} Compiling sources ${NC}"
-	docker run -it --rm -v $SCRIPTPATH:/example -v $SCRIPTPATH/target/java$JAVA_VERSION:/example/target/ -v $HOME:$HOME --user `id -u $USER`:`id -g $USER` -e HOME=$HOME  openjdk:$JAVA_VERSION /bin/bash /example/javac.sh
+	docker run -it --rm -v $SCRIPTPATH:/example -v $SCRIPTPATH/target/java$JAVA_VERSION:/example/target/ -v $HOME:$HOME --user `id -u $USER`:`id -g $USER` -e HOME=$HOME  openjdk:$JAVA_VERSION /bin/bash /example/javac$JAVA_VERSION.sh
 }
 
 function resources {
