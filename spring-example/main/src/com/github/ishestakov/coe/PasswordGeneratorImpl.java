@@ -14,7 +14,7 @@ public class PasswordGeneratorImpl implements PasswordGenerator {
 	public String generate(String symbols, int length) {
 		StringBuilder builder = new StringBuilder(length);
 		for (int i = 0; i < length; i++) {
-			builder.append(symbols.charAt(random.nextInt(length)));
+			builder.append(symbols.charAt(random.nextInt(symbols.length())));
 		}
 		return builder.toString();
 	}
